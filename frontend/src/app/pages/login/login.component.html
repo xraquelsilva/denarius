@@ -8,8 +8,19 @@
       <p class="description">Faça o login para usar o Denarius</p>
 
       <div class="inputs">
-        <input id="email" type="text" placeholder="Insira seu e-mail...">
-        <input id="password" type="text" placeholder="Insira sua senha...">
+        <app-input-field
+        id="email"
+        type="text"
+        placeholder="Insira seu e-mail..."
+        [(value)]="email"
+      ></app-input-field>
+
+      <app-input-field
+        id="password"
+        type="password"
+        placeholder="Insira sua senha..."
+        [(value)]="password"
+      ></app-input-field>
       </div>
       <a class="forgot-password">Esqueceu a senha?</a>
       <div class="content-submit">
