@@ -1,13 +1,20 @@
-<section class="login-container">
-  <div class="login-content">
+<section class="register-container">
+  <div class="register-content">
     <div class="content-image">
       <img src="assets\images\logo-name.svg" alt="">
     </div>
     <section class="content-inputs">
-      <h1 class="title">Iniciar sessão</h1>
-      <p class="description">Faça o login para usar o Denarius</p>
+      <h1 class="title">Cadastre-se</h1>
+      <p class="description">Faça seu cadastro para usar o Denarius</p>
 
       <div class="inputs">
+        <app-input-field
+        id="password"
+        type="password"
+        placeholder="Insira seu nome"
+        [(value)]="name"
+      ></app-input-field>
+
         <app-input-field
         id="email"
         type="text"
@@ -24,11 +31,11 @@
       </div>
       <a class="forgot-password">Esqueceu a senha?</a>
       <div class="content-submit">
-        <button id="login-submit">Entrar</button>
+        <button id="register-submit">Entrar</button>
       </div>
-      <div class="content-another-logins">
+      <div class="content-another-register">
         <p class="line-text">Ou inicie com</p>
-        <div class="another-logins">
+        <div class="another-register">
           <div>
             <img src="assets\images\login\google.png" alt="">
           </div>
@@ -40,7 +47,7 @@
           </div>
         </div>
 
-        <p class="register">Ainda não possui conta? <a class="register-link" href="/cadastro">Criar conta</a></p>
+        <p class="register">Já possui uma conta? <a class="register-link" href="/login">Fazer login</a></p>
       </div>
     </section>
   </div>
