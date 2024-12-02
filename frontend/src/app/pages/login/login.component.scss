@@ -1,0 +1,126 @@
+@use '../../../assets/styles/variables.scss' as vars;
+
+
+
+
+.login {
+  &-content {
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 0 30px;
+    height: 100vh;
+
+    .content-image {
+      display: flex;
+      justify-content: center;
+      padding: 70px 0 30px 0;
+    }
+
+    .content-inputs {
+      .title {
+        font-family: vars.$font-family-base;
+        font-weight: vars.$font-weight-bold;
+        font-size: 24px;
+        color: vars.$black-color;
+        margin: 0 0 8px 0;
+      }
+
+      .description {
+        font-family: vars.$font-family-base;
+        font-weight: vars.$font-weight-regular;
+        font-size: 18px;
+        color: vars.$gray-color;
+        margin: 0 0 15px 0;
+      }
+
+      .forgot-password {
+        font-family: vars.$font-family-base;
+        font-weight: vars.$font-weight-bold;
+        color: vars.$secondary-color;
+        font-size: 16px;
+        margin: 10px 0 20px 0;
+        display: flex;
+        justify-content: end;
+      }
+
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        #email, #password{
+          background-color: vars.$gray-color-two;
+          border-radius: 5px;
+          height: 48px;
+          border: none;
+          font-size: 16px;
+          padding-left: 10px;
+        }
+      }
+
+      .content-submit {
+        display: flex;
+        justify-content: center;
+        #login-submit {
+          padding: 12px 30px;
+          font-size: 15px;
+          border-radius: 15px;
+          color: vars.$white-color;
+          background: vars.$primary-color;
+          border: none;
+          font-weight: vars.$font-weight-regular;
+        }
+      }
+    }
+
+    .content-another-logins {
+      .line-text {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: vars.$gray-color-three;
+        font-size: 16px;
+        font-weight: vars.$font-weight-bold;
+
+        padding: 25px 0;
+
+        &::before,
+        &::after {
+          content: '';
+          flex: 1;
+          border-bottom: 1px solid #ccc;
+          margin: 0 8px;
+        }
+      }
+
+      .another-logins {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+        div {
+          padding: 12px 15px;
+          border: vars.$gray-color 1px solid;
+          border-radius: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+    .register {
+      font-weight: vars.$font-weight-bold;
+      font-size: 15px;
+      color: vars.$gray-color-three;
+      padding: 40px 0;
+      &-link {
+        color: vars.$secondary-color;
+      }
+    }
+  }
+  &-container {
+    background: #F9F9F9;
+  }
+}
+
