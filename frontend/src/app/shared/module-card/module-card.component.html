@@ -1,0 +1,22 @@
+<section
+  [ngStyle]="{ background: backgroundColor, color: textColor }"
+  class="container-card"
+>
+  <div class="card-content-img">
+    <img [src]="imageSrc" [alt]="title">
+  </div>
+  <h1 class="card-title" [innerHTML]="title" [ngStyle]="{color: textColorTitle }">
+  </h1>
+  <p class="card-description">
+    {{ description }}
+  </p>
+  <div class="tags">
+    <div
+      *ngFor="let tag of tags"
+      [ngStyle]="{ background: tag.background, color: tag.color }"
+      class="tag"
+    >
+      <p class="tag-name">{{ tag.name }}</p>
+    </div>
+  </div>
+</section>
