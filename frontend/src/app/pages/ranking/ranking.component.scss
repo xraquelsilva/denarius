@@ -1,0 +1,151 @@
+.ranking-container {
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 0 30px;
+  height: 100vh;
+
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+  }
+
+  h2.title {
+    text-align: center;
+    color: #3a3a3a;
+    font-size: 24px;
+  }
+}
+
+.chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  padding-top: 225px;
+}
+
+.bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 80px;
+}
+
+.bar-container .user-info {
+  position: absolute;
+  bottom: calc(100% + 10px); /* 10px acima da barra */
+  text-align: center;
+}
+
+.bar-container .user-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.bar-container .user-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #003D6C;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.bar-container .user-xp {
+  font-size: 12px;
+  color: #3A3A3C;
+}
+
+.bar {
+  width: 100%;
+  max-width: 50px;
+  background-color: #FF8C00;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+    justify-content: center;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+}
+
+.ranking-list {
+  width: 100%;
+  max-width: 600px;
+  background: #B0C4DE;
+  border-radius: 25px 25px 0px 0;
+  padding: 20px 50px;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.list-item .list-position {
+  font-size: 13px;
+  font-weight: 100;
+  margin-right: 10px;
+  background: white;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 37%);
+  border-radius: 100%;
+  padding: 6px 10px;
+}
+
+.user-list {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  background: white;
+  border-radius: 10px;
+  padding: 0px 10px 0 5px;
+    .img-name {
+      display: flex;
+      align-items: center;
+    }
+
+}
+
+.logged-in {
+  background-color: #FFDA44;
+  border-radius: 10px;
+  padding: 5px;
+  .list-position {
+    box-shadow: none;
+  }
+}
+
+.list-item .list-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 5px;
+  padding: 5px;
+}
+
+.list-item .list-name {
+  flex-grow: 1;
+  font-size: 14px;
+}
+
+.list-item .list-xp {
+  font-size: 12px;
+  color: #666;
+}
+
+
+.view-all {
+  padding: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+  color: white;
+  font-weight: bold;
+}

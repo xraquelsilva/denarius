@@ -1,0 +1,62 @@
+<div class="ranking-container">
+  <div class="navigation">
+    <img src="assets\images\navigate_before.png" alt="voltar">
+    <a href="">
+      <img src="assets\images\question.png" alt="dúvida">
+    </a>
+  </div>
+  <!-- Título -->
+  <h2 class="title">Classificação</h2>
+
+  <!-- Gráfico - Top 3 -->
+  <div class="chart">
+    <!-- Segunda posição -->
+    <div class="bar-container second">
+      <div class="user-info">
+        <img [src]="topThree[1].photo" alt="Foto do usuário" class="user-photo" />
+        <div class="user-name">{{ topThree[1].name }}</div>
+        <div class="user-xp">{{ topThree[1].xp }} XP</div>
+      </div>
+      <div class="bar" [style.height.px]="calculateHeight(topThree[1].xp)">2</div>
+    </div>
+
+    <!-- Primeira posição -->
+    <div class="bar-container first">
+      <div class="user-info">
+        <img [src]="topThree[0].photo" alt="Foto do usuário" class="user-photo" />
+        <div class="user-name">{{ topThree[0].name }}</div>
+        <div class="user-xp">{{ topThree[0].xp }} XP</div>
+      </div>
+      <div class="bar" [style.height.px]="calculateHeight(topThree[0].xp)">1</div>
+    </div>
+
+    <!-- Terceira posição -->
+    <div class="bar-container third">
+      <div class="user-info">
+        <img [src]="topThree[2].photo" alt="Foto do usuário" class="user-photo" />
+        <div class="user-name">{{ topThree[2].name }}</div>
+        <div class="user-xp">{{ topThree[2].xp }} XP</div>
+      </div>
+      <div class="bar" [style.height.px]="calculateHeight(topThree[2].xp)">3</div>
+    </div>
+  </div>
+
+  <!-- Lista - Outros Usuários -->
+  <div class="ranking-list">
+    <div *ngFor="let user of remainingUsers; let i = index" class="list-item" [ngClass]="{'logged-in': isLoggedUser(user.id)}">
+      <div class="list-position">{{ i + 4 }}</div>
+      <div class="user-list">
+        <div class="img-name">
+          <img [src]="user.photo" alt="Foto do usuário" class="list-photo" />
+          <div class="list-name">{{ user.name }}</div>
+        </div>
+        <div class="list-xp">{{ user.xp }} XP</div>
+      </div>
+
+    </div>
+    <div class="view-all">Ver todos</div>
+  </div>
+
+  <app-bottom-nabvbar></app-bottom-nabvbar>
+
+</div>
