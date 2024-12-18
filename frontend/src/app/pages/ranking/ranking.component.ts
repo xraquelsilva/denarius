@@ -22,7 +22,7 @@ export class RankingComponent implements OnInit {
     { id: 2,name: 'Teresa', xp: 400, photo: 'assets/images/ranking/teresa.png' },
     { id: 3,name: 'Bruno', xp: 0, photo: 'assets/images/ranking/bruno.png' },
     { id: 4,name: 'João', xp: 600, photo: 'assets/images/ranking/joao.png' },
-    { id: 5,name: 'Amelia', xp: 1200, photo: 'assets/images/ranking/amelia.png' },
+    { id: 5,name: 'Amelia', xp: 0, photo: 'assets/images/ranking/amelia.png' },
     { id: 6,name: 'Maria', xp: 100, photo: 'assets/images/ranking/maria.png' }
   ];
 
