@@ -1,0 +1,118 @@
+.perfil-container {
+  background-color: #F9F9F9;
+  height: 100vh;
+}
+
+.perfil-background {
+  background-image: url('../../../assets/images/profile/background.png'); /* Caminho correto */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 274px;
+  display: flex;
+  align-items: baseline;
+  justify-content: end;
+}
+
+
+.perfil-content {
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 0 30px;
+
+  .perfil-img {
+    position: absolute;
+
+    img {
+      position: relative;
+      top: -158px;
+      right: -75px;
+    }
+  }
+
+  .perfil-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p.name {
+      font-size: 24px;
+      font-weight: normal;
+      color: #3A3A3C;
+      padding-top: 10px;
+    }
+
+    p.level {
+      color: #003D6C;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 3px;
+    }
+    .xp {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+
+      .bar {
+        width: 195px;
+        height: 15px;
+        background: #FFCC00;
+        border-radius: 25px;
+      }
+
+      .progress-bar {
+        font-size: 10px;
+        color: #003D6C;
+        font-weight: 600;
+        padding-top: 4px;
+      }
+
+    }
+
+  }
+
+  .modules {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .module {
+    display: flex;
+    align-items: center;
+    background: #F8F4E6;
+    border-radius: 10px;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 23%);
+
+    .title-module {
+      color: #003D6C;
+      font-size: 22px;
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+
+    .img-module {
+      height: 93px;
+      display: flex;
+      align-items: center;
+    }
+
+    .progress {
+      background: orange;
+      display: inline-block;
+      padding: 5px 20px;
+      border-radius: 25px;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .block {
+      background-color: #FF3B3B;
+    }
+  }
+}
