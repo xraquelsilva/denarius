@@ -8,12 +8,20 @@
     display: flex;
     justify-content: space-between;
     padding-top: 30px;
+    align-items: center;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   h2.title {
     text-align: center;
     color: #3a3a3a;
     font-size: 24px;
+    position: fixed;
+    width: 80%;
   }
 }
 
