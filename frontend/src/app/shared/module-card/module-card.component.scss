@@ -6,6 +6,8 @@
 
   margin-bottom: 30px;
 
+  position: absolute;
+
   .card-content-img {
     display: flex;
     justify-content: center;
@@ -43,5 +45,22 @@
         font-weight: bold;
       }
     }
+  }
+}
+
+
+.overlay {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  width: 300px;
+  height: 373px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.block {
+    visibility: hidden;
   }
 }

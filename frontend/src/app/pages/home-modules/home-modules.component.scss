@@ -6,6 +6,10 @@
     padding-top: 180px;
     padding-bottom: 50px;
     margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
   }
 
   app-module-card {

@@ -24,6 +24,7 @@ export class ModuleCardComponent {
   @Input() textColor: string = '#000000';
 
   @Input() textColorTitle: string = '#000000';
+  @Input() block: boolean = false;
 
 
 
