@@ -1,0 +1,35 @@
+<div class="module-card">
+
+  <div>
+    <div class="module-header">
+      <button class="btn-exit" (click)="exitModule()">Sair</button>
+    </div>
+
+    <h1 class="module-title" [innerHTML]="moduleData.title"></h1>
+
+    <div class="module-details">
+      <h3 class="module-section-title">Objetivo:</h3>
+      <p class="module-section-desc" [innerHTML]="moduleData.objective"></p>
+
+      <h3 class="module-section-title">Conteúdo:</h3>
+      <ul class="module-section-list">
+        <li *ngFor="let content of moduleData.content">{{ content }}</li>
+      </ul>
+    </div>
+
+    <div class="mascot">
+      <img [src]="moduleData.mascot" alt="Mascote" class="module-mascot" />
+    </div>
+  </div>
+  <!-- Botão de sair -->
+
+  <div class="module-footer">
+
+    <div class="module-actions">
+      <button class="btn-start" (click)="startModule()">Iniciar</button>
+      <button class="btn-learn-more" (click)="learnMore()">Ler mais</button>
+    </div>
+  </div>
+
+</div>
+

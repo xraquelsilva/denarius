@@ -1,6 +1,7 @@
 <section
   [ngStyle]="{ background: backgroundColor, color: textColor }"
   class="container-card"
+  (click)="openModal()"
 >
   <div class="card-content-img">
     <img [src]="imageSrc" [alt]="title">
@@ -24,3 +25,17 @@
 <div class="overlay" [ngClass]="block ? 'block' : ''">
   <img src="assets/images/block.png" alt="">
 </div>
+
+
+<!-- Modal -->
+<app-modal
+  [isModalOpen]="isModalOpen"
+  [title]="modalData.title"
+  [description]="modalData.description"
+  [moduleXp]="modalData.moduleXp"
+  [objectiveTitle]="modalData.objectiveTitle"
+  [objectiveDesc]="modalData.objectiveDesc"
+  [topics]="modalData.topics"
+  (close)="closeModal()"
+  (start)="startModule()"
+></app-modal>

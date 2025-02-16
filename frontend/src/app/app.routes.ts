@@ -8,6 +8,10 @@ import { RecompensasComponent } from './pages/recompensas/recompensas.component'
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { TopicsModuleComponent } from './shared/topics-module/topics-module.component';
+import { DetailModuleComponent } from './shared/detail-module/detail-module.component';
+import { QuizModuleComponent } from './shared/quiz-module/quiz-module.component';
+
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,10 +21,15 @@ export const routes: Routes = [
   { path: 'ranking', component: RankingComponent },
   { path: 'recompensas', component: RecompensasComponent },
   { path: 'perfil', component: PerfilComponent },
+  { path: 'modulo-resumo', component: TopicsModuleComponent},
+  { path: 'modulo-detalhes', component: DetailModuleComponent },
+  { path: 'modulo-quiz', component: QuizModuleComponent }
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), CommonModule],
+  imports: [RouterModule.forRoot(routes),
+            CommonModule],
   exports: [RouterModule]
 })
 

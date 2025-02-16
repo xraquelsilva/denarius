@@ -1,0 +1,97 @@
+<div class="quiz-container">
+  <!-- Navegação superior -->
+  <div class="quiz-header">
+    <span class="quiz-progress">
+      Pergunta {{ currentQuestionIndex + 1 }} de {{ totalQuestions }}
+    </span>
+    <button class="btn-help" (click)="openHelp()">?</button>
+  </div>
+
+  <!-- Etapa da pergunta -->
+  <div class="quiz-step" *ngIf="step === 'question'">
+    <h1 class="quiz-title">{{ questions[currentQuestionIndex].question }}</h1>
+    <img
+      [src]="questions[currentQuestionIndex].image"
+      alt="Ilustração"
+      class="quiz-image"
+    />
+
+    <div class="quiz-options">
+      <button
+        *ngFor="let option of questions[currentQuestionIndex].options; let i = index"
+        class="quiz-option"
+        [class.selected]="selectedOption === i"
+        (click)="selectOption(i)"
+      >
+        {{ option.text }}
+      </button>
+    </div>
+    <button
+      class="btn-confirm"
+      [disabled]="selectedOption === null"
+      (click)="confirmAnswer()"
+    >
+      Confirmar
+    </button>
+  </div>
+
+  <!-- Etapa da resposta -->
+  <div class="quiz-step" *ngIf="step === 'response'">
+    <h1 class="quiz-title">{{ questions[currentQuestionIndex].question }}</h1>
+    <img
+      [src]="questions[currentQuestionIndex].image"
+      alt="Ilustração"
+      class="quiz-image"
+    />
+
+    <div class="quiz-options">
+      <button
+        *ngFor="let option of questions[currentQuestionIndex].options; let i = index"
+        class="quiz-option"
+        [class.correct]="i === questions[currentQuestionIndex].correctAnswer"
+        [class.selected]="selectedOption === i"
+      >
+        {{ option }}
+      </button>
+    </div>
+    <button class="btn-next" (click)="goToNextQuestion()">
+      Próxima
+    </button>
+  </div>
+
+  <!-- Modal personalizado -->
+  <div *ngIf="step === 'modal'" class="quiz-modal">
+    <div class="modal-content">
+      <h1>{{ modalTitle }}</h1>
+      <p>{{ modalDescription }}</p>
+      <img [src]="modalImage" alt="Celebration" class="modal-image" />
+      <div class="coin">
+
+        <p *ngIf="isCorrect" class="modal-score">+{{ modalScore }} moedas</p>
+        <img *ngIf="isCorrect" src="assets/images/icone_moeda.png" alt="moeda" class="modal-image" />
+      </div>
+      <button class="btn-next" (click)="goToNextQuestion()">Próxima</button>
+    </div>
+  </div>
+
+  <!-- Feedback final -->
+  <div *ngIf="step === 'end'" class="quiz-step">
+    <h1 class="feedback-title">Mandou <br>bem <span>{{User}}</span>!!</h1>
+    <div class="content-feedback">
+      <p>
+        Voce acumulou
+        <span>+ 70 moedas</span>
+        no seu saldo!
+
+        E <span>acertou 77%</span> das perguntas!!
+      </p>
+
+      <p class="desc-feedback">O próximo módulo já está desbloqueado para você continuar aprendendo.</p>
+    </div>
+    <p>Sua pontuação total: {{ totalScore }}</p>
+
+
+
+    <button class="btn-finish" (click)="finishModule()">Finalizar</button>
+  </div>
+</div>
