@@ -1,43 +1,21 @@
 <section class="modules-container">
   <app-top-nabvbar></app-top-nabvbar>
-  <div class="modules-content">
-    <app-module-card
-      [title]="'Lidando com<br>cartão de crédito'"
-      [description]="'Nesse módulo você irá aprender como administrar seu cartão de crédito de forma inteligente.'"
-      [imageSrc]="'assets/images/card-home/module-credit.svg'"
-      [backgroundColor]="'#F8F4E6'"
-      [textColorTitle]="'#007BFF'"
-      [textColor]="'#757577'"
-      [block]="true"
-      [tags]="[
-        { name: 'Crédito', color: '#3A3A3C', background: '#D8BFD8' },
-      ]"
-    ></app-module-card>
 
-    <app-module-card
-      [title]="'Economizando<br>sem medo'"
-      [description]="'Nesse módulo você irá aprender sobre fundo de emergência para não ficar apertado durante o mês.'"
-      [imageSrc]="'assets/images/card-home/economizando.svg'"
-      [backgroundColor]="'#003D6C'"
-      [textColorTitle]="'#F8F4E6'"
-      [textColor]="'#F8F4E6'"
-      [tags]="[
-        { name: 'Poupança', color: '#757577', background: '#F8F4E6' },
-        { name: 'Investimento', color: '#F8F4E6', background: '#06C270' }
-      ]"
-    ></app-module-card>
-    <app-module-card
-      [title]="'Comprando com<br>consiência'"
-      [description]="'Nesse módulo você irá aprender como administrar seu cartão de crédito de forma inteligente.'"
-      [imageSrc]="'assets/images/card-home/comprando.svg'"
-      [backgroundColor]="'#F8F4E6'"
-      [textColorTitle]="'#007BFF'"
-      [textColor]="'#757577'"
-      [tags]="[
-        { name: 'Poupança', color: '#3A3A3C', background: '#D8BFD8' },
-        { name: 'Investimento', color: '#3A3A3C', background: '#06C270' },
-      ]"
-    ></app-module-card>
+  <div class="modules-content">
+    <ng-container *ngFor="let module of modules">
+      <app-module-card
+        [title]="module.title"
+        [description]="module.description"
+        [imageSrc]="module.imageSrc"
+        [backgroundColor]="module.backgroundColor"
+        [textColorTitle]="module.textColorTitle"
+        [textColor]="module.textColor"
+        [tags]="module.tags"
+        [block]="module.isBlocked"
+      ></app-module-card>
+    </ng-container>
   </div>
   <app-modal></app-modal>
 </section>
+
+

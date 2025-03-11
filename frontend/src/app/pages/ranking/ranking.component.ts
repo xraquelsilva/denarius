@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BottomNabvbarComponent } from "../../shared/bottom-nabvbar/bottom-nabvbar.component";
+import { UserService } from './ranking.service';
+
 
 interface User {
   name: string;
@@ -17,25 +19,28 @@ interface User {
   styleUrl: './ranking.component.scss'
 })
 export class RankingComponent implements OnInit {
-  users = [
-    { id: 1,name: 'Luiza', xp: 500, photo: 'assets/images/ranking/luiza.png' },
-    { id: 2,name: 'Teresa', xp: 400, photo: 'assets/images/ranking/teresa.png' },
-    { id: 3,name: 'Bruno', xp: 0, photo: 'assets/images/ranking/bruno.png' },
-    { id: 4,name: 'João', xp: 600, photo: 'assets/images/ranking/joao.png' },
-    { id: 5,name: 'Amelia', xp: 0, photo: 'assets/images/ranking/amelia.png' },
-    { id: 6,name: 'Maria', xp: 100, photo: 'assets/images/ranking/maria.png' }
-  ];
-
+  users: any[] = [];
   topThree: any[] = [];
   remainingUsers: any[] = [];
   maxBarHeight = 200; // Altura máxima da barra em pixels
-
   loggedUser = { id: 3, name: 'Bruno' };
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.updateRanking();
+    this.loadUsers(); // Carregar usuários ao inicializar o componente
+  }
+
+  loadUsers(): void {
+    this.userService.getUsers().subscribe(
+      (data) => {
+        this.users = data;
+        this.updateRanking();
+      },
+      (error) => {
+        console.error('Erro ao carregar usuários', error);
+      }
+    );
   }
 
   /**
@@ -43,10 +48,18 @@ export class RankingComponent implements OnInit {
    * Ordena pelo maior XP e divide a lista.
    */
   updateRanking(): void {
-    const sortedUsers = [...this.users].sort((a, b) => b.xp - a.xp); // Ordenar em ordem decrescente
-    this.topThree = sortedUsers.slice(0, 3); // Top 3 primeiros
-    this.remainingUsers = sortedUsers.slice(3); // Restante
+    if (!this.users || this.users.length === 0) {
+      console.warn("Nenhum usuário encontrado!");
+      return;
+    }
+
+    const sortedUsers = [...this.users].sort((a, b) => b.xp - a.xp);
+    this.topThree = sortedUsers.slice(0, 3);
+    this.remainingUsers = sortedUsers.slice(3);
+    console.log(this.remainingUsers)
+
   }
+
 
   /**
    * Calcula a altura da barra com base no XP relativo ao maior XP.

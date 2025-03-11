@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { QuizService } from './quiz-module.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-quiz-module',
@@ -8,136 +11,16 @@ import { Component } from '@angular/core';
   templateUrl: './quiz-module.component.html',
   styleUrls: ['./quiz-module.component.scss']
 })
-export class QuizModuleComponent {
+export class QuizModuleComponent implements OnInit{
   // Controle das etapas do quiz
   step: 'question' | 'response' | 'modal' | 'end' = 'question';
   isCorrect = false;
-
-  // Lista de perguntas
-  questions = [
-    {
-      question: 'O que é a fatura do cartão de crédito?',
-      image: 'assets/images/questions/cartao_de_credito.png',
-      options: [
-        { text: 'Um extrato com o total a ser pago no mês' },
-        { text: 'Um documento de cobrança do cartão' },
-        { text: 'Um relatório de compras feitas no mês' },
-      ],
-      correctAnswer: 0,
-      modal: {
-       title: 'Uhuuuuu! Mandou bem!',
-       description:
-         'A fatura é o extrato detalhado de tudo o que você gastou no mês e o total que precisa ser pago.',
-       image: 'assets/images/mandou_bem.png',
-       score: 10,
-     },
-    },
-    {
-      question: 'O limite do cartão de crédito é o valor máximo que você pode _________________.',
-      image: 'assets/images/questions/menina_cartao_credito.png',
-      options: [
-        { text: 'Gastar' },
-        { text: 'Poupar' },
-        { text: 'Investir' },
-      ],
-      correctAnswer: 2,
-      modal: {
-       title: 'Uhuuuuu! Mandou bem!',
-       description:
-         'O pagamento mínimo é uma opção quando você não consegue pagar toda a fatura, mas ele gera juros sobre o saldo restante.',
-       image: 'assets/images/mandou_bem.png',
-       score: 10,
-     },
-    },
-    {
-      question: 'Qual é a principal diferença entre o pagamento mínimo e o pagamento total da fatura?',
-      image: 'assets/images/questions/cartao_e_moeda.png',
-      options: [
-        { text: 'O pagamento mínimo cobre apenas parte da dívida' },
-        { text: 'O pagamento total não inclui juros' },
-        { text: 'O pagamento mínimo elimina a dívida' },
-      ],
-      correctAnswer: 1,
-      modal: {
-       title: 'Uhuuuuu! Mandou bem!',
-       description:
-         'O pagamento mínimo cobre apenas uma parte da dívida, e o restante acumula juros.',
-       image: 'assets/images/mandou_bem.png',
-       score: 10,
-     },
-    },
-    {
-     question: 'Os juros do cartão de crédito incidem sobre o valor que você ______________.',
-     image: 'assets/images/questions/falencia.png',
-     options: [
-       { text: 'deixou de pagar' },
-       { text: 'pagou à vista' },
-       { text: 'pagou adiantado' },
-     ],
-     correctAnswer: 0,
-     modal: {
-       title: 'Uhuuuuu! Mandou bem!',
-       description:
-         'Os juros incidem sobre o valor que você deixou de pagar, então é sempre bom pagar o total.',
-       image: 'assets/images/mandou_bem.png',
-       score: 10,
-     },
-   },
-   {
-     question: 'Se eu pagar a fatura do cartão de crédito em dia, não preciso pagar juros.',
-     image: 'assets/images/questions/recibo.png',
-     options: [
-       { text: 'Verdadeiro' },
-       { text: 'Falso' },
-     ],
-     correctAnswer: 0,
-     modal: {
-       title: 'Uhuuuuu! Mandou bem!',
-       description:
-         'Quando usado de forma responsável, o cartão pode gerar pontos que podem ser trocados por produtos ou descontos, além de aumentar seu limite.',
-       image: 'assets/images/mandou_bem.png',
-       score: 10,
-     },
-   },
-   {
-     question: 'O que acontece se você sempre paga apenas o valor mínimo da fatura?',
-     image: 'assets/images/questions/menina_boleto.png',
-     options: [
-       { text: 'Seu limite aumenta.' },
-       { text: 'Você acumula juros.' },
-       { text: 'Você ganha descontos' },
-     ],
-     correctAnswer: 1,
-     modal: {
-       title: 'Uhuuuuu! Mandou bem!',
-       description:
-         'A primeira ação deve ser ligar para o banco e solicitar o bloqueio do cartão para evitar que alguém use indevidamente.',
-       image: 'assets/images/mandou_bem.png',
-       score: 10,
-     },
-   },
-   {
-     question: 'Para evitar dívidas, é recomendado usar apenas __% do limite do cartão.',
-     image: 'assets/images/questions/limite-de-credito.png',
-     options: [
-       { text: '70' },
-       { text: '90' },
-       { text: '30' },
-     ],
-     correctAnswer: 2,
-     modal: {
-       title: 'Uhuuuuu! Mandou bem!',
-       description:
-         'Usar até 30% do limite é uma prática saudável que ajuda a controlar os gastos.',
-       image: 'assets/images/mandou_bem.png',
-       score: 10,
-     },
-   },
- ];
+  questions: any[] = []; // Garante que questions sempre é um array vazio ao iniciar
+  currentQuestionIndex: number = 0; // Garante que não seja undefined
 
 
-  totalQuestions = this.questions.length;
-  currentQuestionIndex = 0;
+
+  totalQuestions = 0;
   selectedOption: number | null = null;
   totalScore = 0;
 
@@ -146,11 +29,46 @@ export class QuizModuleComponent {
   modalDescription = '';
   modalImage = '';
   modalScore = 0;
-  User: string = 'Maria';
+  nameUser: string = '';
+  currentModuleId = '';
+  userId: string | null = ''
 
-  // Método para abrir ajuda
-  openHelp() {
-    console.log('Ajuda acionada');
+  constructor(private router: Router, private quizService: QuizService, private http: HttpClient) {}
+
+  ngOnInit() {
+    const moduleId = 1; // Substitua pelo ID do módulo desejado
+    this.userId = localStorage.getItem('userId');
+    this.quizService.getQuestionsByModule(moduleId).subscribe(
+      (data) => {
+        this.questions = data;
+        this.totalQuestions = this.questions.length;
+        this.currentModuleId = this.questions[0].module_id
+        console.log('teste');
+        console.log(this.questions);
+      },
+      (error) => {
+        console.error('Erro ao buscar perguntas:', error);
+      }
+    );
+    if (this.userId) {
+      this.http.get(`http://localhost:8000/user/${this.userId}`).subscribe(
+        (user: any) => {
+          this.nameUser = user.name;
+        },
+        (error: any) => {
+          console.error('Erro ao buscar usuário:', error);
+        }
+      );
+    } else {
+      console.error('Erro: userId não encontrado no localStorage!');
+    }
+  }
+
+
+  get currentQuestion() {
+    return this.questions.length > 0 && this.currentQuestionIndex < this.questions.length
+      ? this.questions[this.currentQuestionIndex]
+      : null;
   }
 
   // Selecionar opção
@@ -162,20 +80,27 @@ export class QuizModuleComponent {
   confirmAnswer() {
     if (this.selectedOption !== null) {
       const question = this.questions[this.currentQuestionIndex];
-      this.isCorrect = this.selectedOption === question.correctAnswer;
+      this.isCorrect = this.selectedOption === question.correct_answer;
 
       if (this.isCorrect) {
-        this.totalScore += question.modal.score;
+        this.totalScore += 10;
+        console.log(this.totalScore);
       }
 
       this.modalTitle = this.isCorrect ? 'Uhuuuuu! Mandou bem!' : 'Eita, quase lá...';
-      this.modalDescription = this.isCorrect ? question.modal.description : 'Continue tentando, você está quase acertando!';
-      this.modalImage = this.isCorrect ? question.modal.image : 'assets/images/quase_la.png';
-      this.modalScore = this.isCorrect ? question.modal.score : 0;
+      this.modalDescription = this.isCorrect ? question.description : 'Continue tentando, você está quase acertando!';
+      this.modalImage = this.isCorrect ? "assets/images/mandou_bem.png" : 'assets/images/quase_la.png';
+      this.modalScore = this.isCorrect ? 10 : 0;
 
       this.step = 'modal';
     }
   }
+
+  exit() {
+    console.log('Indo para tela inicial');
+    this.router.navigate(['/modulos']); // Redireciona para a rota /modulos
+  }
+
 
   // Ir para a próxima pergunta
   goToNextQuestion() {
@@ -185,12 +110,55 @@ export class QuizModuleComponent {
     if (this.currentQuestionIndex < this.totalQuestions) {
       this.step = 'question';
     } else {
+      this.currentQuestionIndex--;
       this.step = 'end';
+      this.checkNextModule(); // Verificar o desbloqueio do próximo módulo
     }
   }
+
+  checkNextModule() {
+    const scorePercentage = (this.totalScore / (this.totalQuestions * 10)) * 100;
+
+    if (scorePercentage >= 70) {
+      // Verificar o status do próximo módulo
+      this.quizService.getNextModuleStatus(this.userId, this.currentModuleId+1).subscribe(status => {
+        if (status === 'bloqueado') {
+          this.unlockNextModule(); // Desbloquear o próximo módulo
+        } else {
+        }
+      });
+    } else {
+    }
+  }
+
+  unlockNextModule() {
+    const nextModuleId = this.currentModuleId + 1;
+    console.log('nextModuleId:', nextModuleId); // Verifique se o ID está correto
+
+    this.quizService.unlockModule(this.userId, nextModuleId).subscribe(
+      response => {
+        console.log('Módulo desbloqueado:', response);
+        if (response.success) {
+          this.quizService.updateUserProgress(this.userId,100, this.totalScore ).subscribe(progressResponse => {
+            console.log('Progress Response:', progressResponse);
+            if (progressResponse.success) {
+            } else {
+            }
+          });
+        } else {
+        }
+      },
+      error => {
+        console.error('Erro ao desbloquear o módulo:', error);
+      }
+    );
+  }
+
+
 
   // Finalizar módulo
   finishModule() {
     console.log('Módulo finalizado. Pontuação:', this.totalScore);
+    this.router.navigate(['/modulos']);
   }
 }

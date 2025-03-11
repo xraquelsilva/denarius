@@ -31,7 +31,7 @@ export class ModuleCardComponent {
   @Input() description: string = 'Descrição padrão do cartão.';
 
   /** Caminho para a imagem exibida no cartão */
-  @Input() imageSrc: string = 'assets/images/default-image.svg';
+  @Input() imageSrc: string = '/assets/images/ranking/user.jpg';
 
   /** Cor de fundo do cartão */
   @Input() backgroundColor: string = '#FFFFFF';
@@ -57,7 +57,6 @@ export class ModuleCardComponent {
   }
 
   startModule() {
-    alert('Iniciando o módulo!');
     this.closeModal();
   }
 }

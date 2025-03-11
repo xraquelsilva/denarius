@@ -27,8 +27,8 @@ export class TopicsModuleComponent {
     constructor(private router: Router) {}
   // Ações dos botões
   startModule() {
-    // Lógica para iniciar o módulo
     console.log('Iniciando o módulo...');
+    this.router.navigate(['/modulo-quiz']);
   }
 
   learnMore() {

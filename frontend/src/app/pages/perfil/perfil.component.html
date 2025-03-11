@@ -1,18 +1,23 @@
 <section class="perfil-container">
   <div class="perfil-background">
-    <img src="assets/images/profile/config.png" alt="">
+    <button (click)="logout()" class="logout-btn">
+      Sair
+    </button>
   </div>
   <div class="perfil-content">
     <div class="perfil-img">
-      <img src="assets/images/profile/Avatar.png" alt="">
+      <img style="
+      width: 150px;
+      border-radius: 100px;
+  " src="/assets/images/ranking/user.jpg" alt="">
     </div>
     <div class="perfil-info">
-      <p class="name">Maria</p>
-      <p class="level">Recruta</p>
-      <div class="xp">
+      <p class="name" style="padding-bottom: 20px;">{{nameUser}}</p>
+      <!-- <p class="level">Recruta</p> -->
+      <!-- <div class="xp">
         <div class="bar"></div>
         <div class="progress-bar">0/250 XP</div>
-      </div>
+      </div> -->
     </div>
 
     <div class="modules">
@@ -21,7 +26,7 @@
           <div class="title-module">
             Atividade 01
           </div>
-          <div class="progress">0%</div>
+          <div class="progress" [ngClass]="{'block': statusModules[0] !== 'disponivel'}">{{statusModules[0]}}</div>
         </div>
         <div class="img-module">
           <img src="assets/images/profile/img-atv1.png" alt="">
@@ -32,7 +37,7 @@
           <div class="title-module">
             Atividade 02
           </div>
-          <div class="progress block">Bloqueado</div>
+          <div class="progress" [ngClass]="{'block': statusModules[1] !== 'disponivel'}">{{statusModules[1]}}</div>
         </div>
         <div class="img-module">
           <img src="assets/images/profile/img-atv2.png" alt="">
@@ -43,7 +48,7 @@
           <div class="title-module">
             Atividade 03
           </div>
-          <div class="progress block">Bloqueado</div>
+          <div class="progress" [ngClass]="{'block': statusModules[2] !== 'disponivel'}">{{statusModules[2]}}</div>
         </div>
         <div class="img-module">
           <img src="assets/images/profile/img-atv3.png" alt="">
