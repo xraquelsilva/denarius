@@ -1,0 +1,75 @@
+<div class="recompensas-container">
+  <div class="navigation">
+    <img src="assets\images\question.png" alt="dúvida">
+  </div>
+
+  <div
+    class="carousel"
+    (mousedown)="onDragStart($event)"
+    (mousemove)="onDragMove($event)"
+    (mouseup)="onDragEnd($event)"
+    (mouseleave)="onDragEnd($event)"
+    (touchstart)="onDragStart($event)"
+    (touchmove)="onDragMove($event)"
+    (touchend)="onDragEnd($event)"
+    >
+
+    <div class="content-coin-img">
+      <img src="assets/images/recompensas/coin-big.png" alt="">
+    </div>
+
+    <h1 class="content-title">Recompensas</h1>
+    <div class="content-coins">
+      <p>Saldo: <span>70 moedas</span></p>
+    </div>
+    <div
+      class="carousel-cards"
+      [style.transform]="'translateX(' + currentTranslate + 'px)'"
+      [style.transition]="isDragging ? 'none' : 'transform 0.5s ease-in-out'"
+    >
+      <div class="card" *ngFor="let card of cards">
+        <div class="img-card">
+          <div class="content-img">
+            <img [src]="card.photo" alt="">
+          </div>
+          <div class="countdown">
+            <p>{{ card.timeLeft }}</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <div class="coins">
+            <img src="assets/images/recompensas/coin.png" alt="Moeda">
+            <p>{{card.coins}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicadores -->
+    <div class="carousel-indicators">
+      <div
+        class="indicator"
+        *ngFor="let card of cards; let i = index"
+        [class.active]="i === activeIndex"
+      ></div>
+    </div>
+
+    <div class="fixes">
+      <div class="circle">
+        <img src="assets/images/recompensas/vem.png" alt="" class="circle-img">
+      </div>
+      <div class="circle">
+        <img src="assets/images/recompensas/senai.png" alt="" class="circle-img">
+      </div>
+      <div class="circle">
+        <img src="assets/images/recompensas/lady.png" alt="" class="circle-img">
+      </div>
+      <div class="circle">
+        <img src="assets/images/recompensas/udemy.png" alt="" class="circle-img">
+      </div>
+    </div>
+  </div>
+
+

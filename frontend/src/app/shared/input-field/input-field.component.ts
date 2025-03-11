@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-input-field',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './input-field.component.html',
   styleUrl: './input-field.component.scss'
 })
@@ -11,10 +13,11 @@ export class InputFieldComponent {
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() value: string = '';
+
   @Output() valueChange = new EventEmitter<string>();
 
-  onInput(event: Event): void {
-    const inputValue = (event.target as HTMLInputElement).value;
-    this.valueChange.emit(inputValue);
+  onInputChange(event: any) {
+    this.value = event.target.value;
+    this.valueChange.emit(this.value);
   }
 }

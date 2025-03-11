@@ -1,0 +1,18 @@
+<section>
+  <div class="module-detail-page">
+    <!-- Botão de voltar -->
+    <button class="btn-back" (click)="goBack()">&#8592;</button>
+
+    <!-- Seções de conteúdo -->
+    <div class="module-section" *ngFor="let item of moduleDetails">
+      <h2 class="module-section-title">{{ item.title }}</h2>
+      <p class="module-section-desc">{{ item.description }}</p>
+    </div>
+
+    <!-- Mascote e botão final -->
+    <div class="module-footer">
+      <img [src]="mascot" alt="Mascote" class="module-mascot" />
+      <button class="btn-start" (click)="startModule()">Vamos lá</button>
+    </div>
+  </div>
+</section>

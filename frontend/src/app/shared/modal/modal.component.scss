@@ -1,0 +1,106 @@
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content {
+  margin-bottom: 10px;
+  h2 {
+    text-align: left;
+    width: 222px;
+    color: #003D6C;
+    padding-bottom: 10px;
+  }
+
+  .module {
+    &-xp {
+      background: #FFCC00;
+      width: 127px;
+      margin: 20px auto;
+      padding: 5px 5px;
+      border-radius: 25px;
+      font-size: 16px;
+      color: #003D6C;
+      font-weight: 600;
+    }
+
+    &-objective {
+      .objective {
+        &-title h3 {
+          text-align: left;
+          padding-bottom: 5px;
+          color: #007BFF;
+        }
+
+        &-desc p {
+          color: #3a3a3c;
+          font-size: 12px;
+          font-weight: 400;
+          text-align: left;
+          padding-bottom: 10px;
+        }
+      }
+    }
+
+
+  }
+
+.img-start {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.modal-content ul {
+  text-align: left;
+  text-decoration: none;
+  list-style: none;
+
+  li {
+    padding: 5px 0;
+  }
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+button {
+  background-color: #06C270;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  width: 153px;
+}
+
+button:hover {
+  background-color: #45a049;
+}

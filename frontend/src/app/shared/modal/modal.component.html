@@ -1,0 +1,30 @@
+<div class="modal" [class.show]="isModalOpen">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2 [innerHTML]="title"></h2>
+    <div class="module-xp">{{ moduleXp }} XP</div>
+
+    <div class="module-objective">
+      <div class="objective-title">
+        <h3>{{ objectiveTitle }}</h3>
+      </div>
+      <div class="objective-desc">
+        <p>{{ objectiveDesc }}</p>
+      </div>
+    </div>
+
+    <ul>
+      <li *ngFor="let topic of topics">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 15C3.35786 15 0 11.6422 0 7.5C0 3.35786 3.35786 0 7.5 0C11.6422 0 15 3.35786 15 7.5C15 11.6422 11.6422 15 7.5 15ZM7.5 13.125C10.6066 13.125 13.125 10.6066 13.125 7.5C13.125 4.3934 10.6066 1.875 7.5 1.875C4.3934 1.875 1.875 4.3934 1.875 7.5C1.875 10.6066 4.3934 13.125 7.5 13.125ZM5.35042 6.83709L6.5625 8.04919L9.64959 4.96208C10.0157 4.59597 10.6093 4.59597 10.9754 4.96208C11.3415 5.32821 11.3415 5.92181 10.9754 6.28791L7.22541 10.0379C6.85931 10.404 6.26569 10.404 5.89959 10.0379L4.02458 8.16291C3.65847 7.79681 3.65847 7.20319 4.02458 6.83709C4.39071 6.471 4.98429 6.471 5.35042 6.83709Z" fill="#007BFF"/>
+        </svg>
+        {{ topic }}
+      </li>
+    </ul>
+
+    <img class="img-start" src="assets/images/avatar-start-module.png" alt="">
+    <button (click)="startModule()">
+      Iniciar
+    </button>
+  </div>
+</div>

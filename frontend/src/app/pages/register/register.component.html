@@ -9,8 +9,8 @@
 
       <div class="inputs">
         <app-input-field
-        id="password"
-        type="password"
+        id="name"
+        type="text"
         placeholder="Insira seu nome"
         [(value)]="name"
       ></app-input-field>
@@ -31,7 +31,7 @@
       </div>
       <a class="forgot-password">Esqueceu a senha?</a>
       <div class="content-submit">
-        <button id="register-submit">Entrar</button>
+        <button id="register-submit" (click)="register()">Cadastrar</button>
       </div>
       <div class="content-another-register">
         <p class="line-text">Ou inicie com</p>
