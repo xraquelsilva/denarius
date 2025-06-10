@@ -9,3 +9,4 @@ O aplicativo foi idealizado para promover o letramento financeiro entre universi
 
 ## Tecnologias utilizadas
 
+Para garantir uma experiência de usuário fluida e eficiente, o Denarius foi desenvolvido utilizando React - empregado para construir a interface de usuário interativa e responsiva. Para o gerenciamento e armazenamento de dados, o MySQL foi escolhido como sistema de gerenciamento de banco de dados relacional, assegurando a integridade e a segurança das informações dos usuários cadastrados.
